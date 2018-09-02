@@ -23,7 +23,7 @@ Network(){
      INTERFACE=$(echo -n ${s:0:-1})
      R1=`cat /sys/class/net/$INTERFACE/statistics/rx_bytes`
      T1=`cat /sys/class/net/$INTERFACE/statistics/tx_bytes`
-     #sleep 1
+     sleep 1
      R2=`cat /sys/class/net/$INTERFACE/statistics/rx_bytes`
      T2=`cat /sys/class/net/$INTERFACE/statistics/tx_bytes`
      TBPS=`expr $T2 - $T1`
@@ -94,5 +94,6 @@ Sound(){
 
 while true; do
 	echo -e "$(User) [uptime: $(Uptime)] [cpu: $(Cpu)] [memory: $(Memory)] [swap: $(Swap)] [wifi: $(Wifi)] [$(Network)] [volume: $(Sound)] [keyboard: $(Keyboard)] [music: $(Music)] $(Clock)"
-	sleep 1s
+	#Uncomment the sleep command here if $(Network) isn't active otherwise the sleep command is provided in it
+	#sleep 1s
 done
